@@ -1,4 +1,4 @@
-# Invoice simulator - Server with Mongo
+# Invoice simulator server - Node (Mongo)
 
 This application simulates a simplified portfolio of invoices and their generation of account receivables.
 
