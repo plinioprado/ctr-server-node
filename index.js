@@ -41,7 +41,7 @@ app.disabled('x-powered-by');
 // Routing
 app.use(cookieParser());
 app.use(function (req, res, next){
-  if (true) {
+  if (cn.login) {
    var p = url.parse(req.path).pathname;
    if (
       p.substr(0,5) == '/api/' &&

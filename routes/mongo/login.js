@@ -5,6 +5,7 @@ var cn = require('../../config');
 var Cnf = require('../../db/mongo/cnf');
 var User = require('../../db/mongo/user');
 
+
 var entity = {};
 
 router.use(function timeLog (req, res, next) {
@@ -24,11 +25,9 @@ router.use(function timeLog (req, res, next) {
       });
 
   next();
-
 });
 
 router.post('/', function(req, res) {
-
    var email = req.body.email;
    var pass = req.body.pass;
    User.login(email, pass, function(err, user) {

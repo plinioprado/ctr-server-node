@@ -1,6 +1,6 @@
 var mongoose = require( 'mongoose' );
 
-var userSchema = mongoose.Schema({
+var userSchema = {
    name: {
       type: String,
       required: [ true, 'name required'],
@@ -42,12 +42,62 @@ var userSchema = mongoose.Schema({
       type: Date,
       default: Date.now
    }
-});
+};
 
-var User = module.exports = mongoose.model('User', userSchema);
+var User = module.exports = mongoose.model('User', mongoose.Schema(userSchema));
+
+// Queries
 
 module.exports.login = function(email, pass, callback) {
-   var query = { email: email, pass: pass };
-   User.
-      findOne(query, callback);
+  var query = { email: email, pass: pass };
+  User.
+     findOne(query, callback);
 }
+
+User.getList = function() {
+  return  User.find()
+    .sort({'email': 1})
+    .exec();
+}
+
+User.getById = function(id) {
+
+  if (id == 0) {
+
+    const promise = new Promise(function(resolve, reject) {
+      try {
+        const data = {
+          id: '0',
+          name: userSchema.name.default,
+          fullname: userSchema.fullname.default,
+          email: userSchema.email.default,
+          pass:userSchema.pass.default,
+          active:userSchema.active.default,
+          std:userSchema.std.default
+        }
+        resolve(data)
+      } catch (error) {
+        reject(error)
+      }
+    })
+
+    return promise
+      .then(value => value)
+      .catch(error => error)
+
+  } else {
+
+    return this
+      .findById(id, 'name fullname email pass active std')
+      .exec(); 
+  }
+};
+
+User.post = function(data) {
+
+  return User.create(data);
+
+};
+
+module.exports = User;
+  

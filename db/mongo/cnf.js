@@ -25,4 +25,12 @@ var cnfSchema = mongoose.Schema({
    }
 });
 
-var Cnf = module.exports = mongoose.model('Configs', cnfSchema);
+var Cnf = mongoose.model('Configs', cnfSchema);
+
+Cnf.get = function() {
+  return Cnf
+    .findOne({})
+    .exec();
+}
+
+module.exports = Cnf;

@@ -10,74 +10,75 @@ router.use(function timeLog (req, res, next) {
 });
 
 router.get('/', function(req, res) {
-
-   var promise = User.find()
-      .sort({'email': 1})
-      .exec();
-
-   promise
-      .then(function(users) {
-         res.status(200).json(users);
-      })
-      .catch(function(err) {
-         res.status(400).send(err)
-      });
-});
+  return User
+    .getList()
+    .then(function(users) {
+        res.status(200).json(users);
+    })
+    .catch(function(err) {
+        res.status(400).send(err)
+    });
+  });
 
 router.get('/:_id', function(req, res) {
+  return User
+    .getById(req.params._id)
+    .then(function(user) {
+      res.status(200).json(user);
+    })
+    .catch(function(err) {
+      res.status(400).send(err);  
+    });  
+  });
 
-   if (req.params._id == 0) {
+// router.post('/', function (req, res) {   
 
-      var user = new User();
-      data = {
-         _id: '0',
-         name: user.name,
-         fullname: user.fullname,
-         email: user.email,
-         pass:user.pass,
-         active:user.active,
-         std:user.std
-      }
+//    var data = {
+//       email: req.body.email,
+//       fullname: req.body.fullname,
+//       name: req.body.name,
+//       pass: req.body.pass,
+//       active: req.body.active,
+//       std: req.body.std    
+//    };
 
-      res.status(200).json(data);
+//    var promise = User.create(data);
 
-   } else {
-
-      var promise = User.findById(req.params._id, 'name fullname email pass active std').exec();
-      promise
-         .then(function(user) {
-            res.status(200).json(user);
-         })
-         .catch(function(err) {
-            res.status(400).send(err);  
-         });  
-   }
-});
+//    promise
+//       .then(function() {
+//          res.status(200).send('ok');
+//       })
+//       .catch(function(err) {
+//          if (err.message) {
+//             res.status(400).json(err.message);
+//          } else {
+//             res.status(400).send('error');
+//          }
+//       })
+// });
 
 router.post('/', function (req, res) {   
+  
+  var data = {
+    email: req.body.email,
+    fullname: req.body.fullname,
+    name: req.body.name,
+    pass: req.body.pass,
+    active: req.body.active,
+    std: req.body.std    
+  };
 
-   var data = {
-      email: req.body.email,
-      fullname: req.body.fullname,
-      name: req.body.name,
-      pass: req.body.pass,
-      active: req.body.active,
-      std: req.body.std    
-   };
-
-   var promise = User.create(data);
-
-   promise
-      .then(function() {
-         res.status(200).send('ok');
-      })
-      .catch(function(err) {
-         if (err.message) {
-            res.status(400).json(err.message);
-         } else {
-            res.status(400).send('error');
-         }
-      })
+  return User.create(data)
+    .then(function() {
+      res.status(200).send('ok');
+    })
+    .catch(function(err) {
+      if (err.message) {
+        res.status(400).json(err.message);
+      } else {
+        res.status(400).send('error');
+      }
+    })
 });
 
 router.put('/:_id', function (req, res) {
