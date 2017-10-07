@@ -34,28 +34,26 @@ var db = mongoose.connection;
 
 // Express
 var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.disabled('x-powered-by');
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 // Routing
-app.use(cookieParser());
+
 app.use(function (req, res, next){
   if (cn.login) {
    var p = url.parse(req.path).pathname;
    if (
-      p.substr(0,5) == '/api/' &&
       p != '/api/login' &&
       p != '/api/install' &&
       req.cookies.token != cn.token &&
       cn.login
     ) {
       res.status(400).json('no token');  
-   } else {
-      next();      
-   }    
+   }   
   }
-
+  next();    
 });
 app.get('/', function (req, res) { res.status(404).send('invalid') });
 app.use('/api/cnf', cnf);

@@ -48,10 +48,15 @@ var User = module.exports = mongoose.model('User', mongoose.Schema(userSchema));
 
 // Queries
 
-module.exports.login = function(email, pass, callback) {
-  var query = { email: email, pass: pass };
-  User.
-     findOne(query, callback);
+// module.exports.login = function(email, pass, callback) {
+//   var query = { email: email, pass: pass };
+//   User.
+//      findOne(query, callback);
+// }
+
+User.getByLogin = function(email, pass) {
+  return  User.findOne({ email: email, pass: pass })
+    .exec();
 }
 
 User.getList = function() {

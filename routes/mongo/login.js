@@ -28,26 +28,33 @@ router.use(function timeLog (req, res, next) {
 });
 
 router.post('/', function(req, res) {
-   var email = req.body.email;
-   var pass = req.body.pass;
-   User.login(email, pass, function(err, user) {
-      if(err) {
-         res.status(400).send('error');
-      } else if (user == null) {
-         res.status(403).send('invalid');
+
+  var data = JSON.parse(Object.keys(req.body)[0]);
+
+   User
+    .getByLogin(data.email, data.pass)
+    .then(function(user) {
+      console.log('user', user)
+      if (user === null) {
+        res.status(403).send('invalid');
       } else if (!user.active) {
-         res.status(403).send('inactive');
+        res.status(403).send('inactive');
       } else {
-         var session = {};
-         session.entity = entity;
-         session.user = {
+        var session = {
+          entity: entity,
+          user: {
             name: user.name,
             std: user.std
-         };
-         session.token = cn.token;
-         res.status(200).json(session);  
+          },
+          token: cn.token
+        }
+        res.status(200).json(session);  
       }
-   });
+    })
+    .catch(function(err) {
+      res.status(400).send(err);  
+    });  
+
 });
 
-module.exports = router
+module.exports = router;
