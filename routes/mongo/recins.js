@@ -28,18 +28,19 @@ router.delete('/:cod', function (req, res) {
 router.get('/', function(req, res) {
 
    console.log('get recins');
-
+   
    try {
-      var dt0 = new Date(req.query.dt0);
-      var dtn = new Date(req.query.dtn);
+     var query = {};
+     var dt = {};
+     if (req.query.dt0) dt.$gte = new Date(req.query.dt0);
+     if (req.query.dtn) dt.$lte = new Date(req.query.dtn);
+     if (Object.keys(dt).length !== 0) query.dt = dt;
    } catch(err) {
       res.status(400).send(err);
    }
 
    var promise = Recins
-      .find({
-         dt: { $gte: dt0, $lte: dtn }
-      })
+      .find(query)
       .sort({'cod': 1})
       .select('cod cp dt val')
       .exec();

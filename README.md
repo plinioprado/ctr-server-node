@@ -11,10 +11,13 @@ As its origin, it can be used as a demo and template of a series of finance appl
 The REST full server application controls:
 
 * Login (suggesting a demo company)
+  * 'api/login' (POST)
 * Users
+  * 'api/users (POST)
 * Invoices
+  * 'api/recins' (POST)
 * Config
-
+  * 'api/config' (POST)
 ## Stack
 
 Backend

@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
         res.status(200).json(users);
     })
     .catch(function(err) {
-        res.status(400).send(err)
+        res.status(400).send(err);
     });
   });
 
@@ -27,7 +27,7 @@ router.get('/:_id', function(req, res) {
       res.status(200).json(user);
     })
     .catch(function(err) {
-      res.status(400).send(err);  
+      res.status(400).send(err);
     });  
   });
 
