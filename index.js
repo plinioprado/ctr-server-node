@@ -14,8 +14,18 @@ var User = require('./db/mongo/user');
 //Dependencies - routing
 var cnf = require('./routes/mongo/cnf');
 var login = require('./routes/mongo/login');
-var recins = require('./routes/mongo/recins');
-var user = require('./routes/mongo/user');
+var recins;
+var user;
+if (cn.dbOption === 'firebase') {
+  user = require('./routes/firebase/user');
+  recins = require('./routes/firebase/invoice');
+} else {
+  user = require('./routes/mongo/user');
+  recins = require('./routes/mongo/recins');
+}
+console.log(cn.dbOption)
+
+
 var install = require('./routes/mongo/install');
 
 // Mongo

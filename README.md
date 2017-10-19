@@ -26,6 +26,7 @@ Backend
 * Express
 * Mongoose
 * MongoDb
+* Firebase
 
 ## Set up
 
@@ -54,6 +55,7 @@ localhost:4000
 
 Properties and defaults stored in the file config.json:
 * serverPort: 4000
+* dbOption: 'firebase' or 'mongo' (default 'mongo')
 * mongooseConnectionString: 'mongodb://localhost/example'
 * token: '123321'
 * login: true
@@ -66,6 +68,8 @@ $ npm run test
 ```
 1. Open about:inspect in Chrome
 1. Click the "Open dedicated DevTools for Node" link.
+
+The default db will be Mongo, unless dbOption in the config.json is set to 'firebase'.
 
 # Some troubleshooting
 
