@@ -5,21 +5,20 @@ var cookieParser = require('cookie-parser');
 var cn = require('./config.json');
 var mongoose = require('mongoose');
 var url = require("url");
+var cors = require('cors');
 
-//Dependencies - schemas
-var Cnf = require('./db/mongo/cnf');
-var Recins = require('./db/mongo/recins');
-var User = require('./db/mongo/user');
-
-//Dependencies - routing
-var cnf = require('./routes/mongo/cnf');
+//Dependencies - schemas and routing
+var cnf;
 var login = require('./routes/mongo/login');
 var recins;
 var user;
+
 if (cn.dbOption === 'firebase') {
+  cnf = require('./routes/firebase/config');
   user = require('./routes/firebase/user');
   recins = require('./routes/firebase/invoice');
 } else {
+  cnf = require('./routes/mongo/cnf');
   user = require('./routes/mongo/user');
   recins = require('./routes/mongo/recins');
 }
@@ -44,6 +43,7 @@ var db = mongoose.connection;
 
 // Express
 var app = express();
+app.use(cors());
 app.disabled('x-powered-by');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());

@@ -16,7 +16,7 @@ var ref = firebase.database().ref()
 exports.getConfig = () => {
   
   return ref
-    .child('config')
+    .child('configs')
     .once('value')
     .then((snapshot) => {
       const data = snapshot.val()
@@ -90,7 +90,7 @@ exports.getInvoices = () => {
 
   let data = []
   return ref
-    .child('users')
+    .child('recins')
     .once("value", (snapshot) => {
       snapshot.forEach((child) => {
         let item = child.val()
@@ -106,7 +106,7 @@ exports.getInvoice = (num) => {
   
   let data = []
   return ref
-    .child('users')
+    .child('recins')
     .child(num)
     .once('value')
     .then((snapshot) => {

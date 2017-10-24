@@ -27,6 +27,7 @@ Backend
 * Mongoose
 * MongoDb
 * Firebase
+* cors
 
 ## Set up
 
@@ -59,6 +60,14 @@ Properties and defaults stored in the file config.json:
 * mongooseConnectionString: 'mongodb://localhost/example'
 * token: '123321'
 * login: true
+
+## Databases
+
+MOngoDb
+* Local example
+
+Firebase
+* In the account 
 
 ## Tests
 
