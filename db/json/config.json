@@ -1,0 +1,10 @@
+{
+  "config": {
+    "entity" : {
+      "name" : "Example Services Ltd.",
+      "cod" : "0001",
+      "shortname" : "Example"
+    },
+    "active": true
+  }
+}

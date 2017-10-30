@@ -1,6 +1,6 @@
 var mongoose = require( 'mongoose' );
 
-var cnfSchema = mongoose.Schema({
+var configSchema = mongoose.Schema({
    entity: {
       cod: {
          type: String,
@@ -25,12 +25,33 @@ var cnfSchema = mongoose.Schema({
    }
 });
 
-var Cnf = mongoose.model('Configs', cnfSchema);
+var Config = mongoose.model('Configs', configSchema);
 
-Cnf.get = function() {
-  return Cnf
-    .findOne({})
+Config.get = function() {
+  return Config
+    .findOne()
     .exec();
 }
 
-module.exports = Cnf;
+Config.reset = function() {
+
+  var promise = new Promise((resolve, reject) => {
+    try {
+      resolve(Config.remove({}));
+    } catch(err) {
+      reject('error removing ' + err)
+    }
+  });
+
+  return promise
+    .then(data => {
+      console.log('will create');
+      var json = require('../json/config');
+      Config.create(json.config);
+      console.log('created')
+      return 'ok';      
+    })
+    .catch(error => { return error });
+}
+
+module.exports = Config;

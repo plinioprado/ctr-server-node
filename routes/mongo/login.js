@@ -10,7 +10,7 @@ var entity = {};
 
 router.use(function timeLog (req, res, next) {
 
-   console.log('Routing login at ', Date.now());
+   console.log('Routing login in mongo at ', new Date().toISOString());
 
    var promise = Cnf
       .findOne({})

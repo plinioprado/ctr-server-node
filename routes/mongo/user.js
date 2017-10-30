@@ -4,8 +4,7 @@ var router = express.Router();
 var User = require('../../db/mongo/user');
 
 router.use(function timeLog (req, res, next) {
-  console.log('Routing user at ', Date.now());
-  console.log('User', User)
+  console.log('Routing user in mongo at ', new Date().toISOString());
   next();
 });
 

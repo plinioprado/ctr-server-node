@@ -4,60 +4,56 @@ var router = express.Router();
 var Recins = require('../../db/mongo/recins');
 
 router.use(function timeLog (req, res, next) {
-   console.log('Routing recins at ', Date.now());
+   console.log('Routing recins in mongo at ', new Date().toISOString());
    next();
 });
 
 router.delete('/:cod', function (req, res) {
 
-      console.log('delete recins');
+  console.log('...delete');
 
    var cod = req.params.cod;
 
    var promise = Recins.remove({cod: cod});
    
    promise
-      .then(function() {
-         res.status(200).json('Ok');         
-      })
-      .catch(function(err) {
-         res.status(400).send(err)
-      });
+      .then(function() { res.status(200).json('Ok') })
+      .catch(function(err) { res.status(400).send(err) });
 });
 
 router.get('/', function(req, res) {
 
-   console.log('get recins');
+  console.log('...get');
    
-   try {
-     var query = {};
-     var dt = {};
-     if (req.query.dt0) dt.$gte = new Date(req.query.dt0);
-     if (req.query.dtn) dt.$lte = new Date(req.query.dtn);
-     if (Object.keys(dt).length !== 0) query.dt = dt;
-   } catch(err) {
+  try {
+    var query = {};
+    var dt = {};
+    if (req.query.dt0) dt.$gte = new Date(req.query.dt0);
+    if (req.query.dtn) dt.$lte = new Date(req.query.dtn);
+    if (Object.keys(dt).length !== 0) query.dt = dt;
+  } catch(err) {
       res.status(400).send(err);
-   }
+  }
 
-   var promise = Recins
-      .find(query)
-      .sort({'cod': 1})
-      .select('cod cp dt val')
-      .exec();
+  var promise = Recins
+    .find(query)
+    .sort({'cod': 1})
+    .select('cod cp dt val')
+    .exec();
 
-   promise
-      .then(function(list) {
-         res.status(200).json(list);
-      })
-      .catch(function(err) {
-         res.status(400).send(err);
-      });
+  promise
+    .then(function(list) {
+      res.status(200).json(list);
+    })
+    .catch(function(err) {
+      res.status(400).send(err);
+    });
 
 });
 
 router.get('/:cod', function(req, res) {
 
-   console.log('getOne recins');
+   console.log('...getOne');
 
    if (req.params.cod == 0) {
 
@@ -80,22 +76,18 @@ router.get('/:cod', function(req, res) {
    } else {
 
       var promise = Recins
-         .findOne({cod: req.params.cod},'-_id cod cp dt val std recList')
-         .exec();
+        .findOne({cod: req.params.cod},'-_id cod cp dt val std recList')
+        .exec();
 
       promise
-         .then(function(recins) {
-            res.status(200).json(recins);
-         })
-         .catch(function(err) {
-            res.status(400).send(err);  
-         });
+        .then(function(recins) { res.status(200).json(recins) })
+        .catch(function(err) { res.status(400).send(err) });
    }
 });
 
 router.post('/', function (req, res) {
 
-   console.log('post recins');
+   console.log('...post');
 
    var data = {
       cod: req.body.cod,
@@ -123,7 +115,7 @@ router.post('/', function (req, res) {
 
 router.put('/:cod', function (req, res) {
 
-   console.log('put recins');
+   console.log('...put');
    
    var cod = req.params.cod;
    var data = {

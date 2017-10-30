@@ -7,17 +7,13 @@ var Recins = require('../../db/mongo/recins');
 var User = require('../../db/mongo/user');
 
 router.use(function timeLog(req, res, next) {
-  console.log('Installing at ', Date.now().toString());
+  console.log('Routing install in mongo at ', new Date().toISOString());
   next();
 });
 
 var cb0 = function (req, res, next) {
 
   console.log('Reinstalling '+ cn.mongooseConnectionString);
-
-  Cnf
-   .remove()
-   .exec(console.log('cnf cleared'));
 
   Recins
    .remove()
@@ -32,21 +28,8 @@ var cb0 = function (req, res, next) {
 
 var cbCnf = function (req, res, next) {
 
-   var array = [
-      {
-         entity : {
-            name : 'Example Services Ltd.',
-            cod : '0001',
-            shortname : 'Example'
-         },
-         active: true
-      }
-   ];
-
-   Cnf
-      .create(array, function() {
-         console.log('config ok.');
-      });
+  console.log('Config reset');
+  Cnf.reset();
 
    next();
 }
@@ -146,11 +129,6 @@ var cbRecins = function (req, res, next) {
           console.log('recins error');
         }
       })
-
-  //  Recins
-  //     .create(array, function() {
-  //        console.log('recins ok');
-  //     });
 
    next();
 }

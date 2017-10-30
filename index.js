@@ -16,7 +16,7 @@ var user;
 if (cn.dbOption === 'firebase') {
   cnf = require('./routes/firebase/config');
   user = require('./routes/firebase/user');
-  recins = require('./routes/firebase/invoice');
+  recins = require('./routes/firebase/recins');
 } else {
   cnf = require('./routes/mongo/cnf');
   user = require('./routes/mongo/user');
