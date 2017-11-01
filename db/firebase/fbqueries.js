@@ -4,15 +4,6 @@ var config = require('./firebase.json')
 firebase.initializeApp(config);
 var ref = firebase.database().ref()
 
-// Security setup for Firebase/RealtimeDatabase/Rules
-// {
-//   "rules": {
-//     ".read": "true",
-//     ".write": "auth != null"
-//   }
-// }
-
-
 exports.getConfig = () => {
   
   return ref

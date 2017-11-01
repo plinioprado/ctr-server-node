@@ -1,0 +1,29 @@
+{
+  "user": [
+    {
+      "name" : "Super",
+      "email" : "super@immaginare.com.br",
+      "pass" : "123456",
+      "active" : true,
+      "std" : "super",
+      "fullname" : "Suporte"
+    },
+    {
+      "name" : "John",
+      "email" : "john@example.com",
+      "pass" : "123456",
+      "active" : true,
+      "std" : "user",
+      "fullname" : "John Smith"
+    },
+    {
+      "name" : "Mary",
+      "email" : "mary@example.com",
+      "pass" : "123456",
+      "active" : true,
+      "std" : "user",
+      "fullname" : "Mary Smith"
+    }
+  ]
+}
+  

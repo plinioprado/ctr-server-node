@@ -63,11 +63,43 @@ Properties and defaults stored in the file config.json:
 
 ## Databases
 
-MOngoDb
-* Local example
+* MongoDb: Local example
+* Firebase: In the account
+* Json: for resetting with test data
+* PostgreeSQL
 
-Firebase
-* In the account 
+### MongoDb
+
+Running in the local NodeJS server
+
+Some Troubleshooting 
+* Mongo doesn't run
+1. $ pgrep mongo
+1. $ kill processId // where processId is the return in the first command
+
+### Firebase
+
+Running read only accorging /db/firebase/firebase.json
+
+Account with the the below security setup at Firebase/RealtimeDatabase/Rules:
+```
+{
+  "rules": {
+  ".read": "true",
+  ".write": "auth != null"
+  }
+}
+```
+
+### PostgreeSQL
+
+Running for tests as ctr001 in www.immaginareservice.com.br test hosting
+
+Access to be coded in the future
+
+### Json
+
+Available at /db/json/*.json with test data to reset other databases
 
 ## Tests
 
@@ -80,11 +112,6 @@ $ npm run test
 
 The default db will be Mongo, unless dbOption in the config.json is set to 'firebase'.
 
-# Some troubleshooting
-
-* Mongo doesn't run
-1. $ pgrep mongo
-1. $ kill processId // where processId is the return in the first command
 
 ## Contribution ##
 

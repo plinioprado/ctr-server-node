@@ -46,14 +46,6 @@ var userSchema = {
 
 var User = module.exports = mongoose.model('User', mongoose.Schema(userSchema));
 
-// Queries
-
-// module.exports.login = function(email, pass, callback) {
-//   var query = { email: email, pass: pass };
-//   User.
-//      findOne(query, callback);
-// }
-
 User.getByLogin = function(email, pass) {
   return  User.findOne({ email: email, pass: pass })
     .exec();
@@ -102,6 +94,10 @@ User.post = function(data) {
 
   return User.create(data);
 
+};
+
+User.reset = function() {
+  return 'under construction'
 };
 
 module.exports = User;

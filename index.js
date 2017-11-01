@@ -6,17 +6,23 @@ var cn = require('./config.json');
 var mongoose = require('mongoose');
 var url = require("url");
 var cors = require('cors');
+var dotenv = require('dotenv');
 
 //Dependencies - schemas and routing
 var cnf;
 var login = require('./routes/mongo/login');
 var recins;
 var user;
+var CONNECTIONSTRING;
 
 if (cn.dbOption === 'firebase') {
   cnf = require('./routes/firebase/config');
   user = require('./routes/firebase/user');
   recins = require('./routes/firebase/recins');
+} else if (cn.dbOption === 'postgresql') {
+  cnf = require('./routes/config');
+  user = require('./routes/mongo/user');
+  recins = require('./routes/mongo/recins');
 } else {
   cnf = require('./routes/mongo/cnf');
   user = require('./routes/mongo/user');
@@ -48,6 +54,8 @@ app.disabled('x-powered-by');
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
+dotenv.config();
+
 
 // Routing
 
