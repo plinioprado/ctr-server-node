@@ -7,9 +7,12 @@ const pool = new Pool({
 
 exports.getList = () => {
 
-  console.log('will do');
+  var query;
+  //query = 'SELECT * FROM information_schema.tables;';
+  query = 'SELECT * FROM "ctr001"."configs";';
+  console.log('query', query);
 
-  return pool.query('SELECT * FROM information_schema.tables;')
+  return pool.query(query)
     .then(res => {
       console.log('res', res);
       return res.rows;

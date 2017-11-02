@@ -1,6 +1,6 @@
 {
   "serverPort": 4000,
-  "dbOption": "mongo",
+  "dbOption": "postgresql",
   "mongooseConnectionString": "mongodb://localhost/example",
   "token": "123321",
   "login": false
