@@ -1,0 +1,79 @@
+{
+  "recins": [
+    {
+      "cod": "1",
+      "dt": "2016-01-02",
+      "val": 1000,
+      "cp": {
+         "cod": "001",
+         "name": "Alpha Services Ltd.",
+         "address": {
+            "addr": "201-111 Main Street", 
+            "neigh": "Downtown",
+            "city": "Vancouver",
+            "state": "BC",
+            "zip": "A1A 1A1"
+         }
+      },
+      "std": "nfs",
+      "txt": "Test",
+      "recList": [
+         {
+            "val": 1000,
+            "dtdue": "2016-02-2"
+         }
+      ]
+   },
+   {
+      "cod": "2",
+      "dt": "2016-01-03",
+      "val": 1500,
+      "cp": {
+         "cod": "002",
+         "name": "Beta Industries Inc.",
+         "address": {
+            "addr": "202 Main Street", 
+            "neigh": "Downtown",
+            "city": "Vancouver",
+            "state": "BC",
+            "zip": "A1A 1A1"
+         }
+      },
+      "std": "nfs",
+      "txt": "Test2",
+      "recList": [
+         {
+            "val": 1000,
+            "dtdue": "2016-02-03"
+         }
+      ]
+   },         {
+      "cod": "3",
+      "dt": "2016-01-05",
+      "val": 800,
+      "cp": {
+         "cod": "001",
+         "name": "Alpha Services Ltd.",
+          "address": {
+            "addr": "201-111 Main Street", 
+            "neigh": "Downtown",
+            "city": "Vancouver",
+            "state": "BC",
+            "zip": "A1A 1A1"
+        }
+      },
+      "std": "nfs",
+      "txt": "Teste3",
+      "recList": [
+         {
+            "val": 400,
+            "dtdue": "2016-02-05"
+         },
+         {
+            "val": 400,
+            "dtdue": "2016-03-05"
+         }
+      ]
+   }
+  ]
+}

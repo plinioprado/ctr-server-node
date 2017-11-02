@@ -13,11 +13,18 @@ exports.get = () => {
 
 }
 
-// exports.put = (data) => {
+exports.reset = () => {
 
-//   return pool.query('UPDATE "ctr001"."configs" SET name = $1;', [data.name])
-//   .then(res => { return true })
-//   .catch(err => { throw err });
+  var query1 = 'DELETE FROM "ctr001"."configs";';
 
-// }
+  var json = require('../json/config');  
+  var query2 = 'INSERT INTO "ctr001"."configs" (entity_name, entity_cod, entity_shortname, active) VALUES ($1, $2, $3, $4);';
+  var values2 = [json.config.entity.name, json.config.entity.cod, json.config.entity.shortname, json.config.active];
+
+  return pool.query(query1)
+    .then(pool.query(query2, values2))
+    .then(res => { return 'ok' })
+    .catch(err => { throw err });
+
+}
 

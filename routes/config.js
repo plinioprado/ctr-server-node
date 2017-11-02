@@ -21,6 +21,21 @@ router.get('/', function(req, res) {
       res.status(400).send(err)
     });
   
-  });
+});
+
+router.get('/reset', function(req, res) {
+
+  console.log('...reset');
+  
+  query.reset()
+    .then(function(data) {
+      res.status(200).json(data);
+    })
+    .catch(function(err) {
+      console.log('err in routing', err);
+      res.status(400).send(err)
+    });
+  
+});
 
 module.exports = router;

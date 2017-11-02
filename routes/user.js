@@ -8,6 +8,7 @@ router.use(function timeLog(req, res, next) {
  next();
 });
 
+
 router.get('/', function(req, res) {
 
   console.log('...getList');
@@ -37,6 +38,6 @@ router.get('/:id', function(req, res) {
         res.status(400).send(err);
       });
 
-})
+});
 
 module.exports = router;
