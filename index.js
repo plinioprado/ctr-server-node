@@ -21,8 +21,8 @@ if (cn.dbOption === 'firebase') {
   recins = require('./routes/firebase/recins');
 } else if (cn.dbOption === 'postgresql') {
   cnf = require('./routes/config');
-  user = require('./routes/mongo/user');
-  recins = require('./routes/mongo/recins');
+  user = require('./routes/user');
+  recins = require('./routes/recins');
 } else {
   cnf = require('./routes/mongo/cnf');
   user = require('./routes/mongo/user');

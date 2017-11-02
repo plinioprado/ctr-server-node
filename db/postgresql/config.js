@@ -5,21 +5,19 @@ const pool = new Pool({
   connectionString: connectionString,
 })
 
-exports.getList = () => {
+exports.get = () => {
 
-  var query;
-  //query = 'SELECT * FROM information_schema.tables;';
-  query = 'SELECT * FROM "ctr001"."configs";';
-  console.log('query', query);
-
-  return pool.query(query)
-    .then(res => {
-      console.log('res', res);
-      return res.rows;
-    })
-    .catch(err => {
-      console.log(err, err);
-      throw err
-    });
+  return pool.query('SELECT * FROM "ctr001"."configs";')
+    .then(res => { return res.rows[0] })
+    .catch(err => { throw err });
 
 }
+
+// exports.put = (data) => {
+
+//   return pool.query('UPDATE "ctr001"."configs" SET name = $1;', [data.name])
+//   .then(res => { return true })
+//   .catch(err => { throw err });
+
+// }
+

@@ -2,7 +2,7 @@
   "user": [
     {
       "name" : "Super",
-      "email" : "super@immaginare.com.br",
+      "email" : "super@example.com.br",
       "pass" : "123456",
       "active" : true,
       "std" : "super",

@@ -74,7 +74,7 @@ Running in the local NodeJS server
 
 Some Troubleshooting 
 * Mongo doesn't run
-1. $ pgrep mongo
+1. $ pgrep 
 1. $ kill processId // where processId is the return in the first command
 
 ### Firebase
