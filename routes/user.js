@@ -1,7 +1,14 @@
 var express = require('express');
-var query = require('../db/postgresql/user');
+var cn = require('../config.json');
 
 var router = express.Router();
+
+var query;
+if (cn.dbOption === 'firebase') {
+  query = require('../db/firebase/user');
+} else {
+  query = require('../db/postgresql/user');
+}
 
 router.use(function timeLog(req, res, next) {
   console.log('Routing user at ', new Date().toISOString());

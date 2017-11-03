@@ -1,7 +1,16 @@
 var express = require('express');
-var query = require('../db/postgresql/config');
+var cn = require('../config.json');
 
 var router = express.Router();
+
+var query;
+if (cn.dbOption === 'firebase') {
+  query = require('../db/firebase/config');
+} else if (cn.dbOption === 'postgresql')  {
+  query = require('../db/postgresql/config');
+} else {
+  query = require('../db/mongo/cnf');
+}
 
 router.use(function timeLog(req, res, next) {
   console.log('Routing config at ', new Date().toISOString());

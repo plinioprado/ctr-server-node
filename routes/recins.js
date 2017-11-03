@@ -1,7 +1,14 @@
 var express = require('express');
-var query = require('../db/postgresql/recins');
+var cn = require('../config.json');
 
 var router = express.Router();
+
+var query;
+if (cn.dbOption === 'firebase') {
+  query = require('../db/firebase/recins');
+} else {
+  query = require('../db/postgresql/recins');
+}
 
 router.use(function timeLog(req, res, next) {
   console.log('Routing invoices at ', new Date().toISOString());

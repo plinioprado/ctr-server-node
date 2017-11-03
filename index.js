@@ -8,32 +8,29 @@ var url = require("url");
 var cors = require('cors');
 var dotenv = require('dotenv');
 
+if (cn.dbOption === 'firebase') require('./db/firebase/connection');
+
 //Dependencies - schemas and routing
 var cnf;
 var login = require('./routes/mongo/login');
 var recins;
 var user;
-var CONNECTIONSTRING;
 
-if (cn.dbOption === 'firebase') {
-  cnf = require('./routes/firebase/config');
-  user = require('./routes/firebase/user');
-  recins = require('./routes/firebase/recins');
-} else if (cn.dbOption === 'postgresql') {
-  cnf = require('./routes/config');
-  user = require('./routes/user');
-  recins = require('./routes/recins');
-} else {
+if (cn.dbOption === 'mongo') {
   cnf = require('./routes/mongo/cnf');
   user = require('./routes/mongo/user');
   recins = require('./routes/mongo/recins');
+} else {
+  cnf = require('./routes/config');
+  user = require('./routes/user');
+  recins = require('./routes/recins');
 }
-console.log(cn.dbOption)
-
 
 var install = require('./routes/mongo/install');
 
-// Mongo
+// Db connections
+
+var CONNECTIONSTRING;
 mongoose.Promise = global.Promise;
 mongoose.connect(
   cn.mongooseConnectionString,
@@ -55,7 +52,6 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 dotenv.config();
-
 
 // Routing
 
@@ -82,5 +78,5 @@ app.use('/api/install', install);
 
 // Run
 app.listen(cn.serverPort, function() {
-  console.log('Server running on localhost:' + cn.serverPort);
+  console.log('Server using ' + cn.dbOption + ' running on localhost:' + cn.serverPort);
 });
