@@ -2,7 +2,7 @@ const firebase = require('firebase');
 var ref = firebase.database().ref();
 
 exports.getList = () => {
-  
+
   let data = []
   return ref
     .child('recins')
@@ -16,7 +16,7 @@ exports.getList = () => {
     .then((res) => data)
 
 }
-  
+
 exports.get = (num) => {
   
   let data = []

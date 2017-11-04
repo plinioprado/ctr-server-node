@@ -5,14 +5,6 @@ const pool = new Pool({
   connectionString: connectionString,
 })
 
-exports.getList = () => {
-
-  return pool.query('SELECT * FROM "ctr001"."users";')
-    .then(res => { return res.rows })
-    .catch(err => { throw err });
-
-}
-
 exports.get = (id) => {
   
   return pool.query('SELECT * FROM "ctr001"."users" WHERE id = $1;', [id])
@@ -20,6 +12,22 @@ exports.get = (id) => {
     .catch(err => { throw err });
 
 }
+
+exports.getByLogin = (email, pass) => {
+
+  return pool.query('SELECT * FROM "ctr001"."users" WHERE email = $1 AND Pass = $2;', [email, pass])
+    .then(res => { return res.rows[0] })
+    .catch(err => { throw err });
+    
+}
+
+exports.getList = () => {
+  
+    return pool.query('SELECT * FROM "ctr001"."users";')
+      .then(res => { return res.rows })
+      .catch(err => { throw err });
+  
+  }
 
 exports.reset = () => {
   

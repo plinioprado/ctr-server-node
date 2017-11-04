@@ -12,7 +12,7 @@ if (cn.dbOption === 'firebase') require('./db/firebase/connection');
 
 //Dependencies - schemas and routing
 var cnf;
-var login = require('./routes/mongo/login');
+var login;
 var recins;
 var user;
 
@@ -20,10 +20,12 @@ if (cn.dbOption === 'mongo') {
   cnf = require('./routes/mongo/cnf');
   user = require('./routes/mongo/user');
   recins = require('./routes/mongo/recins');
+  login = require('./routes/mongo/login');
 } else {
   cnf = require('./routes/config');
   user = require('./routes/user');
   recins = require('./routes/recins');
+  login = require('./routes/login');
 }
 
 var install = require('./routes/mongo/install');
@@ -57,15 +59,15 @@ dotenv.config();
 
 app.use(function (req, res, next){
   if (cn.login) {
-   var p = url.parse(req.path).pathname;
-   if (
+    var p = url.parse(req.path).pathname;
+    if (
       p != '/api/login' &&
       p != '/api/install' &&
       req.cookies.token != cn.token &&
       cn.login
     ) {
       res.status(400).json('no token');  
-   }   
+    }   
   }
   next();    
 });
