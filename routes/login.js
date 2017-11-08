@@ -21,7 +21,7 @@ router.use(function timeLog (req, res, next) {
   next();
 });
 
-router.get('/', function(reg, res) {
+router.post('/', function(reg, res) {
 
   console.log('...login');
   var email = 'john@example.com';
