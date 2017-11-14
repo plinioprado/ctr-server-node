@@ -55,22 +55,28 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 dotenv.config();
 
-// Routing
-
-app.use(function (req, res, next){
-  if (cn.login) {
-    var p = url.parse(req.path).pathname;
-    if (
-      p != '/api/login' &&
-      p != '/api/install' &&
-      req.cookies.token != cn.token &&
-      cn.login
-    ) {
-      res.status(400).json('no token');  
-    }   
+// Login
+app.use(function (req, res, next) {
+  var p = url.parse(req.path).pathname;
+  var token = null;
+  if (cn.loginStd === 0) {
+    // No validation
+    token = cn.token;
+  } else if (cn.loginStd === 1) {
+    // Validates token in header
+    token = req.headers.authorization;
+  } else if (cn.loginStd === 2) {
+    // Validate token in cookie
+    token = req.cookies.token;
   }
-  next();    
+  if ( p !== '/api/login' && p !== '/api/install' && token !== cn.token) {
+    res.status(400).json('no token');  
+  }
+  next(); 
 });
+
+
+// Routing
 app.get('/', function (req, res) { res.status(404).send('invalid') });
 app.use('/api/cnf', cnf);
 app.use('/api/login', login);

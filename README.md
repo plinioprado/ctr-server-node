@@ -56,17 +56,17 @@ localhost:4000
 
 Properties and defaults stored in the file config.json:
 * serverPort: 4000
-* dbOption: 'firebase' or 'mongo' (default 'mongo')
+* dbOption: can be mongo, (default), 'postgreesl' or 'firebase'
 * mongooseConnectionString: 'mongodb://localhost/example'
 * token: '123321'
-* login: true
+* loginStd: can be '0' (no token, default), '1' (token in param) or '2' (token in cookies)
 
 ## Databases
 
 * MongoDb: Local example
 * Firebase: In the account
-* Json: for resetting with test data
 * PostgreeSQL
+* Json: for resetting with test data
 
 ### MongoDb
 
