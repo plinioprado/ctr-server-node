@@ -3,5 +3,5 @@
   "dbOption": "mongo",
   "mongooseConnectionString": "mongodb://localhost/example",
   "token": "123321",
-  "loginStd": 1
+  "loginStd": 0
 }
