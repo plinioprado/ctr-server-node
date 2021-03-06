@@ -37,10 +37,10 @@ mongoose.Promise = global.Promise;
 mongoose.connect(
   cn.mongooseConnectionString,
   {
-    useMongoClient: true
+    useNewUrlParser: true
   },
   function (err, res) {
-  useMongoClient: true
+    useNewUrlParser: true
     if (err) console.log('Error when connecting to Mongodb');
   }
 );
@@ -81,6 +81,7 @@ app.get('/', function (req, res) { res.status(404).send('invalid') });
 app.use('/api/cnf', cnf);
 app.use('/api/login', login);
 app.use('/api/recins', recins);
+app.use('/api/invoice', recins);
 app.use('/api/user', user);
 app.use('/api/install', install);
 

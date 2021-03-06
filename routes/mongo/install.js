@@ -46,10 +46,10 @@ var cbRecins = function (req, res, next) {
                name: 'Alpha Services Ltd.',
                address: {
                   addr: '201-111 Main Street', 
-                  neigh: 'Downtown',
                   city: 'Vancouver',
                   state: 'BC',
-                  zip: 'A1A 1A1'
+                  zip: 'A1A 1A1',
+                  country: 'Canada'
                }
             },
             std: 'nfs',
@@ -70,10 +70,10 @@ var cbRecins = function (req, res, next) {
                name: 'Beta Industries Inc.',
                address: {
                   addr: '202 Main Street', 
-                  neighborhood: 'Downtown',
                   city: 'Vancouver',
                   state: 'BC',
-                  zip: 'A1A 1A1'
+                  zip: 'A1A 1A1',
+                  country: 'Canada'
                }
             },
             std: 'nfs',
@@ -96,11 +96,12 @@ var cbRecins = function (req, res, next) {
                   neigh: 'Downtown',
                   city: 'Vancouver',
                   state: 'BC',
-                  zip: 'A1A 1A1'
+                  zip: 'A1A 1A1',
+                  country: 'Canada'
               }
             },
             std: 'nfs',
-            txt: 'Teste3',
+            txt: 'Test3',
             recList: [
                {
                   val: 400,
@@ -145,7 +146,7 @@ var cbUser = function (req, res, next) {
          "fullname" : "Suporte"
       },
       {
-         "name" : "João",
+         "name" : "John",
          "email" : "john@example.com",
          "pass" : "123456",
          "active" : true,

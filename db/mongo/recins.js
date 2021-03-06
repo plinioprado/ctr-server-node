@@ -66,7 +66,13 @@ var recinsSchema = mongoose.Schema({
             required: [ true, 'zip required'],
             maxlength: [8, 'zip with max 8 characters'],
             default: ''
-         }
+         },
+         country: {
+          type: String,
+          required: [ true, 'Country required'],
+          maxlength: [15, 'Country with max 15 characters'],
+          default: ''
+       }
       }
    },
    std: {
