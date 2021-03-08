@@ -24,10 +24,10 @@ router.get('/', function(req, res) {
 
 });
 
-router.get('/:num', function(req, res) {
+router.get('/:cod', function(req, res) {
 
   console.log('...get');
-  query.get(req.params.num)
+  query.get(req.params.cod)
     .then(function(data) { res.status(200).json(data) })
     .catch(function(err) { res.status(400).send(err) });
 

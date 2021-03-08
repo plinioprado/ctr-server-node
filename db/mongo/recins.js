@@ -4,8 +4,8 @@ var recinsSchema = mongoose.Schema({
    cod: {
       type: String,
       required: [ true, 'cod required'],
-      minlength: [1, 'name with min 1 character'],
-      maxlength: [15, 'name with max 15 characters'],
+      minlength: [1, 'cod with min 1 character'],
+      maxlength: [15, 'cod with max 15 characters'],
       default: '',
       unique : true
    },
