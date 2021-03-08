@@ -48,8 +48,8 @@ var cbRecins = function (req, res, next) {
                   addr: '201-111 Main Street', 
                   city: 'Vancouver',
                   state: 'BC',
-                  zip: 'A1A 1A1',
-                  country: 'Canada'
+                  zip: 'V6A 2S5',
+                  country: 'CAN'
                }
             },
             std: 'nfs',
@@ -73,7 +73,7 @@ var cbRecins = function (req, res, next) {
                   city: 'Vancouver',
                   state: 'BC',
                   zip: 'A1A 1A1',
-                  country: 'Canada'
+                  country: 'CAN'
                }
             },
             std: 'nfs',
@@ -96,8 +96,8 @@ var cbRecins = function (req, res, next) {
                   neigh: 'Downtown',
                   city: 'Vancouver',
                   state: 'BC',
-                  zip: 'A1A 1A1',
-                  country: 'Canada'
+                  zip: 'V6A 2S5',
+                  country: 'CAN'
               }
             },
             std: 'nfs',
