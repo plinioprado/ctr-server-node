@@ -1,6 +1,11 @@
 var mongoose = require( 'mongoose' );
 
 var userSchema = {
+  num: {
+    type: Number,
+    default: 0,
+    validate: v => v >= 0
+ },
    name: {
       type: String,
       required: [ true, 'name required'],
@@ -65,6 +70,7 @@ User.getById = function(id) {
       try {
         const data = {
           id: '0',
+          num: userSchema.num.default,
           name: userSchema.name.default,
           fullname: userSchema.fullname.default,
           email: userSchema.email.default,
