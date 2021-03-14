@@ -138,28 +138,31 @@ var cbUser = function (req, res, next) {
 
    var array = [
       {
-         "name" : "Super",
-         "email" : "super@immaginare.com.br",
-         "pass" : "123456",
-         "active" : true,
-         "std" : "super",
-         "fullname" : "Suporte"
+        "num": 1,
+        "name" : "Super",
+        "email" : "super@immaginare.com.br",
+        "pass" : "123456",
+        "active" : true,
+        "std" : "super",
+        "fullname" : "Suporte"
       },
       {
-         "name" : "John",
-         "email" : "john@example.com",
-         "pass" : "123456",
-         "active" : true,
-         "std" : "user",
-         "fullname" : "John Smith"
+        "num": 2,
+        "name" : "John",
+        "email" : "john@example.com",
+        "pass" : "123456",
+        "active" : true,
+        "std" : "user",
+        "fullname" : "John Smith"
       },
       {
-         "name" : "Mary",
-         "email" : "mary@example.com",
-         "pass" : "123456",
-         "active" : true,
-         "std" : "user",
-         "fullname" : "Mary Smith"
+        "num": 3,
+        "name" : "Mary",
+        "email" : "mary@example.com",
+        "pass" : "123456",
+        "active" : true,
+        "std" : "user",
+        "fullname" : "Mary Smith"
       }
    ];
 
