@@ -11,30 +11,9 @@ var entity = {};
 router.use(function timeLog (req, res, next) {
 
    console.log('Routing login in mongo at ', new Date().toISOString());
-
-   var promise = Cnf
-      .findOne({})
-      .exec();
-
-   promise
-      .then(function(result) {
-         entity = result.entity;
-      })
-      .catch(function(err) {
-         res.status(400).send(err);  
-      });
-
-  next();
-});
-
-router.post('/', function(req, res) {
-
-  var data = JSON.parse(Object.keys(req.body)[0]);
-
    User
-    .getByLogin(data.email, data.pass)
+    .getByLogin(req.body.email, req.body.pass)
     .then(function(user) {
-      console.log('user', user)
       if (user === null) {
         res.status(403).send('invalid');
       } else if (!user.active) {
@@ -54,6 +33,25 @@ router.post('/', function(req, res) {
     .catch(function(err) {
       res.status(400).send(err);  
     });  
+
+  next();
+});
+
+router.post('/', function(req, res) {
+
+  var promise = Cnf
+    .findOne({})
+    .exec();
+
+  promise
+    .then(function(result) {
+      entity = result.entity;
+    })
+    .catch(function(err) {
+      res.status(400).send(err);  
+    });
+
+
 
 });
 
